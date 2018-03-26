@@ -1,0 +1,17 @@
+{% extends 'boards/base.html' %}
+{% block title %} Start a New Topic {% endblock %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'boards:list' %}">Boards</a></li>
+<li class="breadcrumb-item"><a href="{% url 'boards:board_detail' board.pk%}">{{board.name}}</a></li>
+<li class="breadcrumb-item active" >New topic</li> 
+{% endblock %}
+{% block content %}
+<form action="" method="post" novalidate>
+    {% csrf_token %}
+    {{ form.as_p}}
+    <button type="submit" class="btn btn-success">Post</button>
+</form>
+{% endblock %}
+
+

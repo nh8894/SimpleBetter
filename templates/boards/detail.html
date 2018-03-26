@@ -3,12 +3,30 @@
 {{board.name}} - {{block.super}}
 {% endblock %}
 {% block breadcrumb %}
-            <li class="breadcrumb-item"><a href="{% url 'boards:list'%}">Boards</a></li>
+            <li class="breadcrumb-item "><a href="{% url 'boards:list'%}">Boards</a></li>
             <li class="breadcrumb-item active">{{ board.name }}</li>
-        </ol>
 {% endblock %}
 {% block content %}
-<a href="{% url 'boards:board_new' board.pk %}">Create New Topic</a>
-<h1>{{board.name}}</h1>
-<h2>{{board.description}}</h2>
-{% endblock %}
+<a class="btn btn-primary" href="{% url 'boards:board_new' board.pk %}">Create New Topic</a>
+  <table class="table my-4">
+      <thead class="thead-dark">
+        <tr>
+            <th>Topic</th>
+            <th>Starter</th>
+            <th>Replies</th>
+            <th>Views</th>
+            <th>Last Update</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for topic in board.topics.all %}
+        <tr>                                                                                                   <td>{{ topic.subject }}</td>
+            <td>{{ topic.starter.username }}</td>
+            <td>0</td>
+            <td>0</td>
+            <td>{{ topic.last_updated }}</td>
+            </tr>
+        {% endfor %}
+     </tbody>
+     </table>
+{% endblock %} 

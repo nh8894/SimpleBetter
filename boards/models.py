@@ -15,7 +15,7 @@ class Topic(models.Model):
         last_updated = models.DateTimeField(auto_now_add=True)
         board = models.ForeignKey(Board, related_name='topics')
         starter = models.ForeignKey(User, related_name='topics')
-        
+       
         def __str__(self):
             return self.subject
 
@@ -27,6 +27,6 @@ class Post(models.Model):
         updated_at = models.DateTimeField(null=True)
         created_by = models.ForeignKey(User, related_name='posts')
         updated_by = models.ForeignKey(User, null=True, related_name='+')
-        
+
         def __str__(self):
             return self.message[:10]
